@@ -1,27 +1,22 @@
-conda_forge_output_validation: true
-
-# https://conda-forge.org/docs/maintainer/conda_forge_yml.html#azure
 azure:
-  # Docker can't run podman (required for tests) without additional privileges
   settings_linux:
     variables:
       CONDA_FORGE_DOCKER_RUN_ARGS: --cap-add SYS_ADMIN
-github:
-  branch_name: main
-  tooling_branch_name: main
-conda_build:
-  pkg_format: '2'
-workflow_settings:
-  # toggle for storing the conda build_artifacts directory (including the
-  # built packages) as a CI artifact that can be downloaded
-  store_build_artifacts: true
 bot:
   automerge: true
 build_platform:
   linux_aarch64: linux_64
   linux_ppc64le: linux_64
   osx_arm64: osx_64
-test: native_and_emulated
+conda_build:
+  pkg_format: '2'
+conda_forge_output_validation: true
+github:
+  branch_name: main
+  tooling_branch_name: main
 provider:
   linux_64: azure
   win_64: azure
+test: native_and_emulated
+workflow_settings:
+  store_build_artifacts: true
